@@ -1,0 +1,40 @@
+.calendar {
+  max-width: 400px;
+  width: 100%;
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  // .calendar__year
+
+  &__year {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  // .calendar__days
+
+  &__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+  }
+
+  // .calendar__day
+
+  &__day {
+    padding: 0.75rem;
+    text-align: center;
+    background-color: #e2e8f0;
+    border-radius: 0.5rem;
+  }
+
+  // .calendar__today
+
+  &__today {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+  }
+}
