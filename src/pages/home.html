@@ -2,12 +2,30 @@
   <div class="wrapper">
     <header></header>
     <main>
-      <h1>Hello world</h1>
-
       <div id="calendar" class="calendar">
         <h1 id="calendar-year" class="calendar__year"></h1>
+        <div id="calendar-weekdays" class="calendar__weekdays"></div>
         <div id="calendar-days" class="calendar__days"></div>
       </div>
+
+      <form id="create-new-habit" class="habit-form">
+        <div class="habit-form__item">
+          <label class="habit-form__label" for="new-habit">Habit Name:</label>
+          <input
+            id="new-habit"
+            name="new-habit"
+            type="text"
+            placeholder="A new Habit"
+            class="habit-form__input"
+          />
+        </div>
+
+        <button class="habit-form__button" type="submit">
+          Создать новую привычку
+        </button>
+      </form>
+
+      <div id="habits"></div>
     </main>
     <footer></footer>
   </div>

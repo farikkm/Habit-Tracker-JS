@@ -1,9 +1,13 @@
-import { monthNames } from "../helpers/constants";
+import { monthNames, weekdaysNames } from "../helpers/constants";
 
-export default function renderCalendar(daysContainerElem, currentDateElem) {
-  if (!daysContainerElem || !currentDateElem) return;
+export default function renderCalendar(
+  daysContainerElem,
+  calendarWeekDaysElem,
+  currentDateElem
+) {
+  if (!daysContainerElem || !currentDateElem || !calendarWeekDaysElem) return;
 
-  currentDateElem.innerHTML = ""
+  currentDateElem.innerHTML = "";
   daysContainerElem.innerHTML = "";
 
   const now = new Date();
@@ -12,7 +16,7 @@ export default function renderCalendar(daysContainerElem, currentDateElem) {
 
   const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
+
   currentDateElem.textContent = `${monthNames[month]} ${year}`;
 
   for (let i = 0; i < firstDay; i++) {
@@ -20,15 +24,25 @@ export default function renderCalendar(daysContainerElem, currentDateElem) {
     daysContainerElem.appendChild(empty);
   }
 
+  for (let i = 0; i < weekdaysNames.length; i++) {
+    const weekday = weekdaysNames[i];
+
+    const weekdayElem = document.createElement("div");
+    weekdayElem.classList.add("calendar__weekday")
+    weekdayElem.textContent = weekday;
+    
+    calendarWeekDaysElem.appendChild(weekdayElem);
+  }
+
   for (let day = 1; day <= daysInMonth; day++) {
     const dayElem = document.createElement("div");
     dayElem.classList.add("calendar__day");
     dayElem.textContent = day;
-    
+
     const isSunday = new Date(year, month, day).getDay() === 0;
 
     if (isSunday) {
-      dayElem.style.backgroundColor = "rgba(255, 0, 0, 0.05)"
+      dayElem.style.backgroundColor = "rgba(255, 0, 0, 0.05)";
     }
 
     if (day === now.getDate()) {

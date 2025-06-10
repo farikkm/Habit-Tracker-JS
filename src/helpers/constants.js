@@ -13,3 +13,6 @@ export const monthNames = [
   "November",
   "December",
 ];
+export const weekdaysNames = [
+  "Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"
+]

@@ -15,7 +15,7 @@
 
   // .calendar__days
 
-  &__days {
+  &__days, &__weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.5rem;
@@ -28,6 +28,14 @@
     text-align: center;
     background-color: #e2e8f0;
     border-radius: 0.5rem;
+  }
+
+  // .calendar__weekday
+
+  &__weekday {
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 700;
   }
 
   // .calendar__today
