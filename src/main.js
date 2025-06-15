@@ -30,7 +30,7 @@ async function main() {
       e.preventDefault();
 
       const fd = new FormData(form);
-      const newHabit = fd.get("new-habit");
+      const newHabit = fd.get("new-habit"); 
 
       addNewHabit(newHabit)
       renderHabits(habits, habitsContainer);
