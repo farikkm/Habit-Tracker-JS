@@ -5,6 +5,7 @@ import loadPage from "./helpers/loadPage";
 import { PAGES_FOLDER } from "./helpers/constants";
 import renderCalendar from "./modules/calendar";
 import renderHabits from "./modules/habits";
+import { disableButton, undisableButton } from "./helpers/elements";
 
 async function main() {
   if (window.location.pathname === "/") {
@@ -19,23 +20,40 @@ async function main() {
     // New Habit
     const habits = JSON.parse(localStorage.getItem("habits")) || [];
     const form = document.getElementById("create-new-habit");
+    const formInput = form.elements["new-habit"];
     const habitsContainer = document.getElementById("habits");
+    const habitButton = document.querySelector(".habit-form__button");
+
+    disableButton(habitButton);
 
     const addNewHabit = (habit) => {
-      habits.push(habit);
-      localStorage.setItem("habits", JSON.stringify(habits));
+      if (habit !== "") {
+        habits.push(habit);
+        localStorage.setItem("habits", JSON.stringify(habits));
+      }
     }
+
+    formInput.addEventListener("input", (e) => {
+      const { value } = e.target;
+
+      if (!value) {
+        disableButton(habitButton);
+      } else {
+        undisableButton(habitButton);
+      }
+    })
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const fd = new FormData(form);
-      const newHabit = fd.get("new-habit"); 
+      const newHabit = fd.get("new-habit");
 
-      addNewHabit(newHabit)
+      if (newHabit !== "") addNewHabit(newHabit)
       renderHabits(habits, habitsContainer);
 
       form.reset();
+      disableButton(habitButton);
     });
 
     renderHabits(habits, habitsContainer);
